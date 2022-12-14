@@ -1,2 +1,2 @@
 ## Introduction
-A node.js application to provide config service
+A node.js application to provide config service, which is exposed by endpoint `/config`. The service will fetch a configuration json from AWS remote APPConfig service and return for consumer. If AWS AppConfig service is not available, it will return default json data from the local json file.

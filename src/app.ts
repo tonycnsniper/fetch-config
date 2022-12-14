@@ -1,9 +1,8 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express'
+import { routes } from './routes'
 
-const app: Express = express();
+const app: Express = express()
 
-app.get('/', (req: Request, res: Response): void => {
-  res.status(200).send('Hello world');
-});
+app.use('/', routes)
 
-export default app;
+export default app
