@@ -4,7 +4,12 @@ module.exports = {
     '^.+\\.(ts|tsx)$': 'ts-jest'
   },
   testMatch: [
-    '**/test/**/*.spec.ts'
+    '**/src/**/*.spec.ts'
   ],
-  testEnvironment: 'node'
+  testEnvironment: 'node',
+  collectCoverage: false,
+  collectCoverageFrom: [
+    'src/**/*.ts'
+  ],
+  coverageDirectory: '<rootDir>/test/coverage'
 }

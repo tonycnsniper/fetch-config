@@ -3,9 +3,18 @@ import { ConfigReponseBody } from '../types/appConfig'
 
 import * as defaultConfig from '../cache/aws-config-appId.json'
 
-const isAppConfigAvailable = () => false
+/**
+ * check app conf if avaible or not
+ * @returns true for avaiable; false for not
+ */
+export const isAppConfigAvailable = () => false
 
-const loadDefaultConfig = (): AppConfiguration => {
+
+/**
+ * return default config from json file.
+ * @returns AppConfiguration
+ */
+export const loadDefaultConfig = (): AppConfiguration => {
   return defaultConfig as AppConfiguration
 }
 
