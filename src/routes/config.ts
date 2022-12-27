@@ -10,6 +10,6 @@ export const configRoute = Router()
  * @route GET /config
  */
 configRoute.get('/config', (req: Request, res: Response) => {
-  const responseBody: ConfigReponseBody = fetchConfig();
+  const responseBody: ConfigReponseBody = fetchConfig()
   res.json(responseBody)
 })

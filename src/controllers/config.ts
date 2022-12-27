@@ -9,7 +9,6 @@ import * as defaultConfig from '../cache/aws-config-appId.json'
  */
 export const isAppConfigAvailable = () => false
 
-
 /**
  * return default config from json file.
  * @returns AppConfiguration
@@ -29,5 +28,5 @@ export const fetchConfig = (): ConfigReponseBody => {
     responseBody.body = loadDefaultConfig()
   }
 
-  return responseBody;
+  return responseBody
 }
