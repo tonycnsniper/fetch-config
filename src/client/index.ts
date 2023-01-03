@@ -33,6 +33,6 @@ export const client = async <T>(
     }
     throw new Error(response.statusText)
   } catch (err: any) {
-    return Promise.reject(err.message ? err.message : data)
+    return Promise.resolve(err.message || data)
   }
 }

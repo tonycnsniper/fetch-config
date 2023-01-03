@@ -25,7 +25,7 @@ describe('config endpoint test', () => {
     })
 
     afterAll(() => {
-
+        jest.restoreAllMocks()
     })
 
     it('default endpoint /config should return code 200', async () => {
