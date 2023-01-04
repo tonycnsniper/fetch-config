@@ -22,7 +22,7 @@ export interface InitialSessionBody {
 }
 
 export interface GetConfigurationResponse {
-  NextPollConfigurationToken: String
-  NextPollIntervalInSeconds: Number
-  Configuration: AppConfiguration
+  NextPollConfigurationToken?: String
+  NextPollIntervalInSeconds?: Number
+  Configuration?: AppConfiguration
 }

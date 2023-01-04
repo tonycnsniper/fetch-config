@@ -9,7 +9,8 @@ module.exports = {
   testEnvironment: 'node',
   collectCoverage: false,
   collectCoverageFrom: [
-    'src/**/*.ts'
+    'src/**/*.ts',
+    '!src/index.ts'
   ],
   coverageDirectory: '<rootDir>/test/coverage'
 }

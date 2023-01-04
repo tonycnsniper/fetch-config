@@ -43,5 +43,5 @@ export const getLatestConfiguration = async (
       method: 'GET',
     })
 
-  return getLastestConfigurationResponse?.Configuration
+  return getLastestConfigurationResponse.Configuration
 }
