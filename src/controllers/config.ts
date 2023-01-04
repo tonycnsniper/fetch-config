@@ -37,26 +37,26 @@ export const loadDefaultConfig = (): AppConfiguration => {
 
 export const fetchConfig = async (): Promise<ConfigReponseBody> => {
   let responseBody: ConfigReponseBody = {
-    status: 200
+    status: 200,
   }
   const result = await getAppConfigToken()
   const token = result?.InitialConfigurationToken || ''
   if (!token) {
     responseBody = {
       ...responseBody,
-      statusText: "default config loaded",
-      body: loadDefaultConfig()
+      statusText: 'default config loaded',
+      body: loadDefaultConfig(),
     }
     return responseBody
   }
 
   const appConfig = await getLatestConfiguration(token)
 
-  if(!appConfig) {
+  if (!appConfig) {
     responseBody = {
       ...responseBody,
-      statusText: "default config loaded",
-      body: loadDefaultConfig()
+      statusText: 'default config loaded',
+      body: loadDefaultConfig(),
     }
 
     return responseBody

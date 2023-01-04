@@ -82,30 +82,30 @@ describe('getLatestConfiguration test suite', () => {
       NextPollConfigurationToken: '9i3k3-93',
       NextPollIntervalInSeconds: 600,
       Configuration: {
-        "ip": "10.0.0.1",
-        "namespace": "west-dg-mc",
-        "domain": "demo.example.com"
-      }
+        ip: '10.0.0.1',
+        namespace: 'west-dg-mc',
+        domain: 'demo.example.com',
+      },
     })
-    
+
     const token: String = '84k4-38'
-    const result = await getLatestConfiguration(token);
+    const result = await getLatestConfiguration(token)
 
     expect(result).toEqual({
-      "ip": "10.0.0.1",
-      "namespace": "west-dg-mc",
-      "domain": "demo.example.com"
+      ip: '10.0.0.1',
+      namespace: 'west-dg-mc',
+      domain: 'demo.example.com',
     })
   })
 
   it('error message would be return when client fetch config failed', async () => {
     mockClient.mockResolvedValue({
       status: 500,
-      statusText: 'failed'
+      statusText: 'failed',
     })
-    
+
     const token: String = '84k4-38'
-    const result = await getLatestConfiguration(token);
+    const result = await getLatestConfiguration(token)
 
     expect(result).not.toBeDefined()
   })
