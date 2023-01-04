@@ -37,7 +37,7 @@ describe('method GET request from client', () => {
   it('a response with error message would be return when fetch request failed', async () => {
     global.fetch = jest.fn(() =>
       Promise.reject({
-        message: 'failed',
+        statusText: 'failed',
       })
     ) as jest.Mock
 

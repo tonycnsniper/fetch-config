@@ -9,7 +9,7 @@ export const configRoute = Router()
  * fetch config info
  * @route GET /config
  */
-configRoute.get('/config', (req: Request, res: Response) => {
-  const responseBody: ConfigReponseBody = fetchConfig()
+configRoute.get('/config', async (req: Request, res: Response) => {
+  const responseBody: ConfigReponseBody = await fetchConfig()
   res.json(responseBody)
 })

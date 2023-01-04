@@ -1,17 +1,17 @@
 export interface AppConfiguration {
-  ip: String
-  domain: String
-  namespace: String
+  ip?: String
+  domain?: String
+  namespace?: String
 }
 
 export interface ConfigReponseBody {
-  message?: String
+  statusText?: String
   status?: Number
   body?: AppConfiguration
 }
 
-export interface InitialSessionResponse {
-  InitialConfigurationToken: String
+export interface InitialSessionResponse extends ConfigReponseBody {
+  InitialConfigurationToken?: String
 }
 
 export interface InitialSessionBody {

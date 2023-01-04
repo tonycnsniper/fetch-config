@@ -39,8 +39,8 @@ describe('config endpoint test', () => {
     })
 
     it('fetchConfig should be called at once when /config is requested', async () => {
-        mockFetchConfig.mockReturnValue({
-            message: 'hi',
+        mockFetchConfig.mockResolvedValue({
+            statusText: 'hi',
             status: 200
         })
 

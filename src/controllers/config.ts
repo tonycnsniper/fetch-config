@@ -1,20 +1,27 @@
 import { AppConfiguration } from '../types/appConfig'
-import { ConfigReponseBody, InitialSessionResponse, InitialSessionBody } from '../types/appConfig'
-import { getLatestConfiguration, startSession } from '../services/awsAppConfigService'
-import * as defaultConfig from '../cache/aws-config-appId.json'
+import {
+  ConfigReponseBody,
+  InitialSessionResponse,
+  InitialSessionBody,
+} from '../types/appConfig'
+import {
+  getLatestConfiguration,
+  startSession,
+} from '../services/awsAppConfigService'
+import { default as defaultConfig } from '../cache/aws-config-appId.json'
 import config from 'config'
 
-const getAppConfigToken = async (): Promise<InitialSessionResponse> => {
+export const getAppConfigToken = async (): Promise<InitialSessionResponse> => {
   const {
     ApplicationIdentifier,
     ConfigurationProfileIdentifier,
-    EnvironmentIdentifier
-  }: InitialSessionBody = config.get('startSession');
-  
+    EnvironmentIdentifier,
+  }: InitialSessionBody = config.get('startSession')
+
   const response: InitialSessionResponse = await startSession({
     ApplicationIdentifier,
     ConfigurationProfileIdentifier,
-    EnvironmentIdentifier
+    EnvironmentIdentifier,
   })
 
   return response
@@ -29,18 +36,36 @@ export const loadDefaultConfig = (): AppConfiguration => {
 }
 
 export const fetchConfig = async (): Promise<ConfigReponseBody> => {
-  let responseBody: ConfigReponseBody = {}
-  const result = await getAppConfigToken();
-  const token = result.InitialConfigurationToken;
-  if (token) {
-    const appConfig = await getLatestConfiguration(token)
+  let responseBody: ConfigReponseBody = {
+    status: 200
+  }
+  const result = await getAppConfigToken()
+  const token = result?.InitialConfigurationToken || ''
+  if (!token) {
     responseBody = {
-      message: 'fetch succesully',
-      status: 200,
-      body: appConfig
+      ...responseBody,
+      statusText: "default config loaded",
+      body: loadDefaultConfig()
     }
-  } else {
-    responseBody.body = loadDefaultConfig()
+    return responseBody
+  }
+
+  const appConfig = await getLatestConfiguration(token)
+
+  if(!appConfig) {
+    responseBody = {
+      ...responseBody,
+      statusText: "default config loaded",
+      body: loadDefaultConfig()
+    }
+
+    return responseBody
+  }
+
+  responseBody = {
+    statusText: 'fetch succesully',
+    status: 200,
+    body: appConfig,
   }
 
   return responseBody

@@ -35,7 +35,7 @@ export const startSession = async (
 
 export const getLatestConfiguration = async (
   token: String
-): Promise<AppConfiguration> => {
+): Promise<AppConfiguration | undefined>  => {
   const url = buildGetLatestRequestUrl(token)
 
   const getLastestConfigurationResponse =
@@ -43,5 +43,5 @@ export const getLatestConfiguration = async (
       method: 'GET',
     })
 
-  return getLastestConfigurationResponse.Configuration
+  return getLastestConfigurationResponse?.Configuration
 }
